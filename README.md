@@ -46,23 +46,23 @@ Root privileges provide access to all system files and directories that would ot
 ## Output Example
 
 ```
-Scanning current directory: .
-Scanned Files: 5694 | Dirs: 1476 | Errors: 0 | Skipped: 0 | Size: 197.6 GB | Time: 0s
-                    FILE SYSTEM SCAN RESULTStilities/locales/hi-IN.po
+Scanning directory: /Volumes/Femboy >_</Developer/
+Scanned Files: 3558 | Dirs: 998 | Errors: 0 | Skipped: 0 | Size: 197.4 GB | Time: 0s
+                    FILE SYSTEM SCAN RESULTS/app/base/static/assets/js/core/popper.min.js
 
-SCANNED PATH         .
+SCANNED PATH         /Volumes/Femboy >_</Developer/
 TOTAL FILES          6121 files
 TOTAL DIRECTORIES    1552 directories
 TOTAL SIZE           197.6 GB
-SCAN DURATION        336ms
+SCAN DURATION        70ms
 AVERAGE FILE SIZE    33.1 MB
-PROCESSING SPEED     18200.75
+PROCESSING SPEED     86968.21
 ERRORS               0 errors
 
-LARGEST FILE         C Family/C++/ByteBuilder/tests/test5.txt (100.0 GB)
-SMALLEST FILE        Python/lazypip/src/lazypip.egg-info/dependency_links.txt (1 B)
-OLDEST FILE          Visual Studio/fucky wucky/.gitignore (2024-08-07 12:47:29)
-NEWEST FILE          Go/File Counter/README.md (2025-11-15 15:10:03)
+LARGEST FILE         /Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests/test5.txt (100.0 GB)
+SMALLEST FILE        /Volumes/Femboy >_</Developer/Python/lazypip/src/lazypip.egg-info/dependency_links.txt (1 B)
+OLDEST FILE          /Volumes/Femboy >_</Developer/Visual Studio/fucky wucky/.gitignore (2024-08-07 12:47:29)
+NEWEST FILE          /Volumes/Femboy >_</Developer/Go/File Counter/README.md (2025-11-15 15:12:19)
 
 #    EXTENSION      CATEGORY  COUNT   TOTAL SIZE 
 ---- -------------- --------- ------- -----------
@@ -71,13 +71,13 @@ NEWEST FILE          Go/File Counter/README.md (2025-11-15 15:10:03)
 4    .json          Data      254     343.1 MB   
 5    .xml           Data      211     1.4 MB     
 
-#    DIRECTORY                                           FILES   DIRS    TOTAL SIZE 
----- --------------------------------------------------- ------- ------- -----------
-1    C Family/C++/ByteBuilder/tests                      11      1       196.9 GB   
-2    Python/Importify/Spotify Extended Streaming History 28      1       314.8 MB   
-3    dpy/bleed/lavalink                                  2       1       68.1 MB    
-4    playfairs.cc/Github Pages/UwU/assets                29      1       44.5 MB    
-5    equalizerAPO-ARM-64/Setup/lib64                     12      1       29.9 MB     
+#    DIRECTORY                                                    FILES   DIRS    TOTAL SIZE 
+---- ------------------------------------------------------------ ------- ------- -----------
+1    /Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB   
+2    ...loper/Python/Importify/Spotify Extended Streaming History 28      1       314.8 MB   
+3    /Volumes/Femboy >_</Developer/dpy/bleed/lavalink             2       1       68.1 MB    
+4    ...Femboy >_</Developer/playfairs.cc/Github Pages/UwU/assets 29      1       44.5 MB    
+5    ...umes/Femboy >_</Developer/equalizerAPO-ARM-64/Setup/lib64 12      1       29.9 MB      
 ```
 
 ## Understanding the Output
