@@ -1,6 +1,6 @@
-# File Counter Makefile
+# fsscan Makefile
 
-BINARY_NAME=file-counter
+BINARY_NAME=fs
 GO_FILES=$(wildcard *.go)
 BUILD_DIR=build
 
@@ -29,6 +29,7 @@ run-sudo: build
 run-demo: build-demo
 	@echo "Running demo version..."
 	./$(DEMO_BINARY)
+
 build-demo:
 	@echo "Building demo application..."
 	go build -o $(DEMO_BINARY) ./cmd/demo
