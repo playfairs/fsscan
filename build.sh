@@ -1,21 +1,17 @@
 #!/bin/bash
 
-# File Counter Build Script
-# This script builds the file counter application with proper error handling
-
 set -e
 
-# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-BINARY_NAME="file-counter"
-DEMO_BINARY="file-counter-demo"
+BINARY_NAME="fs"
+DEMO_BINARY="fs-demo"
 
-echo -e "${BLUE}=== File Counter Build Script ===${NC}"
+echo -e "${BLUE}=== fsscan Build Script ===${NC}"
 
 if ! command -v go &> /dev/null; then
     echo -e "${RED}Error: Go is not installed or not in PATH${NC}"
@@ -67,16 +63,15 @@ if ls *_test.go 1> /dev/null 2>&1; then
 fi
 
 echo -e "\n${BLUE}=== Build Results ===${NC}"
-echo -e "${GREEN}Built binaries:${NC}"
 
 if [ -f "$BINARY_NAME" ]; then
     SIZE=$(ls -lh "$BINARY_NAME" | awk '{print $5}')
-    echo -e "  📦 $BINARY_NAME (${SIZE})"
+    echo -e "$BINARY_NAME (${SIZE})"
 fi
 
 if [ -f "$DEMO_BINARY" ]; then
     SIZE=$(ls -lh "$DEMO_BINARY" | awk '{print $5}')
-    echo -e "  📦 $DEMO_BINARY (${SIZE})"
+    echo -e "$DEMO_BINARY (${SIZE})"
 fi
 
 echo -e "\n${BLUE}Usage:${NC}"
