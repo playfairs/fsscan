@@ -41,12 +41,13 @@ A high-performance Go application that scans the entire file system starting fro
 
 ### Full System Scan
 ```bash
-./fs              # Basic scan
-sudo ./fs         # With root privileges (recommended if your system is large or your running it from a root directory)
+fs {path}              # Basic scan
+sudo fs {path}         # With root privileges (recommended if your system is large or your running it from a root directory)
 ```
 
 
 Root privileges provide access to all system files and directories that would otherwise be restricted.
+Running the command with path "." will scan the current directory and its subdirectories, vice versa for ".." and so on.
 
 ## Output Example
 
