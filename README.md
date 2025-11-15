@@ -32,6 +32,11 @@ A high-performance Go application that scans the entire file system starting fro
    go build -o fs .
    ```
 
+4. Add the fs command to your path:
+   ```bash
+   sudo cp fs /usr/local/bin/
+   ```
+
 ## Usage
 
 ### Full System Scan
@@ -46,38 +51,37 @@ Root privileges provide access to all system files and directories that would ot
 ## Output Example
 
 ```
-Scanning directory: /Volumes/Femboy >_</Developer/
-Scanned Files: 3558 | Dirs: 998 | Errors: 0 | Skipped: 0 | Size: 197.4 GB | Time: 0s
-                    FILE SYSTEM SCAN RESULTS/app/base/static/assets/js/core/popper.min.js
+Scanning directory: /
+Scanned Files: 4954314 | Dirs: 1200023 | Errors: 927 | Skipped: 378 | Size: 1.4 TB | Time: 2m55s
 
-SCANNED PATH         /Volumes/Femboy >_</Developer/
-TOTAL FILES          6121 files
-TOTAL DIRECTORIES    1552 directories
-TOTAL SIZE           197.6 GB
-SCAN DURATION        70ms
-AVERAGE FILE SIZE    33.1 MB
-PROCESSING SPEED     86968.21
-ERRORS               0 errors
+SCANNED PATH         /
+TOTAL FILES          4954314 files
+TOTAL DIRECTORIES    1200023 directories
+TOTAL SIZE           1.4 TB
+SCAN DURATION        2m55.785s
+AVERAGE FILE SIZE    302.0 KB
+PROCESSING SPEED     28183.99
+ERRORS               927 errors
 
-LARGEST FILE         /Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests/test5.txt (100.0 GB)
-SMALLEST FILE        /Volumes/Femboy >_</Developer/Python/lazypip/src/lazypip.egg-info/dependency_links.txt (1 B)
-OLDEST FILE          /Volumes/Femboy >_</Developer/Visual Studio/fucky wucky/.gitignore (2024-08-07 12:47:29)
-NEWEST FILE          /Volumes/Femboy >_</Developer/Go/File Counter/README.md (2025-11-15 15:12:19)
+LARGEST FILE         /System/Volumes/Data/Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests/test5.txt (100.0 GB)
+SMALLEST FILE        /Applications/Apple Configurator.app/Contents/Frameworks/ConfigurationProfile.framework/Versions/Current (1 B)
+OLDEST FILE          /nix/store/17pkbrabxby9g5ngxz485gb9xkgzzz2l-lowdown-2.0.2-lib/lib/liblowdown.2.dylib (1969-12-31 18:00:00)
+NEWEST FILE          /Applications/Lunar Client.app/Contents/CodeResources (2025-11-15 17:28:38)
 
-#    EXTENSION      CATEGORY  COUNT   TOTAL SIZE 
+#    EXTENSION      CATEGORY  COUNT   TOTAL SIZE
 ---- -------------- --------- ------- -----------
-1    .py            Code      2616    24.1 MB    
-3    .po            Other     303     6.6 MB     
-4    .json          Data      254     343.1 MB   
-5    .xml           Data      211     1.4 MB     
+2    .nix           Nix       789345  2.0 GB
+3    .strings       Other     218172  1.1 GB
+4    .png           Image     176407  8.6 GB
+5    .bin           Other     148723  2.7 GB
 
-#    DIRECTORY                                                    FILES   DIRS    TOTAL SIZE 
+#    DIRECTORY                                                    FILES   DIRS    TOTAL SIZE
 ---- ------------------------------------------------------------ ------- ------- -----------
-1    /Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB   
-2    ...loper/Python/Importify/Spotify Extended Streaming History 28      1       314.8 MB   
-3    /Volumes/Femboy >_</Developer/dpy/bleed/lavalink             2       1       68.1 MB    
-4    ...Femboy >_</Developer/playfairs.cc/Github Pages/UwU/assets 29      1       44.5 MB    
-5    ...umes/Femboy >_</Developer/equalizerAPO-ARM-64/Setup/lib64 12      1       29.9 MB      
+1    /Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB
+2    ...lumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB
+3    .../Data/Volumes/Femboy >_</Media/anime/action/bleach/Bleach 367     1       81.5 GB
+4    /Volumes/Femboy >_</Media/anime/action/bleach/Bleach         367     1       81.5 GB
+5    /System/Volumes/Data/Volumes/Femboy >_</Media/OBS Recordings 341     1       44.4 GB    
 ```
 
 ## Understanding the Output
