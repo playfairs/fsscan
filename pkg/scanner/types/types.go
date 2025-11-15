@@ -188,6 +188,13 @@ var ExtensionCategories = map[string]string{
 	".pkg":  "Executable", // PKG files (macOS)
 	".deb":  "Executable", // Debian packages (Linux)
 	".rpm":  "Executable", // Red Hat packages (Linux)
+	".app":  "Executable", // macOS applications
+	".msi":  "Executable", // Windows installer
+	".iso":  "Executable", // ISO files (installers)
+	".appimage": "Executable", // AppImage files (Linux)
+	".wheel": "Executable", // Python wheel files
+	".run": "Executable", // Installation scripts
+	".bin": "Executable", // Binary files
 }
 
 var SpecialLockFiles = map[string]string{
