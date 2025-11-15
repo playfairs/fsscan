@@ -17,6 +17,9 @@ A high-performance Go application that scans the entire file system starting fro
 - Unix-like operating system (Linux, macOS)
 - Root/sudo privileges recommended for complete system access
 
+>[!NOTE]
+> I did a horrible job at making this, since its a rewrite of an old project I made, this may compile weirdly, you might need to figure out how to add the command "fs" to your path, its stupidly complex at least for nushell, but it should work for bash, zsh, and fish without any issues, I also think because I use nix home-manager, that is probably why I had issues exporting the path, you don't need nix to use this, I don't think anyways. If you have any issues, please open an issue on github :)
+
 ## Installation
 
 1. Clone or download this project
@@ -27,7 +30,6 @@ A high-performance Go application that scans the entire file system starting fro
 3. Build the applications:
    ```bash
    go build -o fs .
-   go build -o fs-demo ./cmd/demo
    ```
 
 ## Usage
@@ -35,45 +37,47 @@ A high-performance Go application that scans the entire file system starting fro
 ### Full System Scan
 ```bash
 ./fs              # Basic scan
-sudo ./fs         # With root privileges (recommended)
+sudo ./fs         # With root privileges (recommended if your system is large or your running it from a root directory)
 ```
 
-### Demo Version (for testing)
-```bash
-./fs-demo                    # Scan current directory
-./fs-demo /path/to/scan     # Scan specific directory
-```
 
 Root privileges provide access to all system files and directories that would otherwise be restricted.
 
 ## Output Example
 
 ```
-=== fsscan - Advanced File System Scanner ===
-Scanning entire file system from root /
-Note: This may take a very long time and require elevated permissions
-Use 'sudo' for full system access if needed
+Scanning directory: /Users/playfairs/.nix
 
-Starting file system scan from: /
-Using 8 worker goroutines
-Press Ctrl+C to stop at any time
+                    FILE SYSTEM SCAN RESULTS
 
-Scanned Files: 1,245,678 | Dirs: 156,789 | Errors: 23 | Skipped: 45 | Size: 2.3 TB | Time: 5m32s
-Current: /Users/username/Documents/projects/large-file.zip
-Last Error: Error accessing /private/var/db/ConfigurationProfiles: permission denied
+SCANNED PATH         /Users/playfairs/.nix
+TOTAL FILES          104 files
+TOTAL DIRECTORIES    25 directories
+TOTAL SIZE           14.9 MB
+SCAN DURATION        4ms
+AVERAGE FILE SIZE    146.9 KB
+PROCESSING SPEED     23192.28
+ERRORS               0 errors
 
-=== FINAL RESULTS ===
-Total Files Scanned: 1,245,678
-Total Directories: 156,789
-Total Errors: 23
-Total Skipped: 45
-Total Data Size: 2.3 TB
-Total Time: 8m45s
-Average Speed: 2,375.32 files/second
-Average File Size: 1.9 MB
-Items per Second: 2,673.21
+LARGEST FILE         /Users/playfairs/.nix/wallpapers/feild.jpg (4.1 MB)
+SMALLEST FILE        /Users/playfairs/.nix/modules/home/analygits/.gitignore (7 B)
+OLDEST FILE          /Users/playfairs/.nix/.gitattributes (2025-11-04 15:20:05)
+NEWEST FILE          /Users/playfairs/.nix/modules/home/shells/default.nix (2025-11-15 14:33:47)
 
-Scan completed with 23 errors (permission denied, etc.)
+#    EXTENSION      CATEGORY  COUNT   TOTAL SIZE 
+---- -------------- --------- ------- -----------
+1    .nix           Nix       64      96.2 KB    
+3    .png           Image     7       6.4 MB     
+4    .jpg           Image     7       8.3 MB     
+5    .lock          Lockfile  5       84.7 KB    
+
+#    DIRECTORY                                    FILES   DIRS    TOTAL SIZE 
+---- -------------------------------------------- ------- ------- -----------
+1    /Users/playfairs/.nix/wallpapers             8       1       8.6 MB     
+2    /Users/playfairs/.nix/.res                   5       1       6.0 MB     
+3    /Users/playfairs/.nix/modules/home/fastfetch 2       1       128.0 KB   
+4    /Users/playfairs/.nix                        9       1       48.0 KB    
+5    /Users/playfairs/.nix/modules/home           20      1       22.6 KB    
 ```
 
 ## Understanding the Output
@@ -105,13 +109,13 @@ Scan completed with 23 errors (permission denied, etc.)
 ### Permission Errors
 If you see many permission errors, run with sudo:
 ```bash
-sudo ./file-counter
+sudo ./fs
 ```
 
 ### Testing Before Full Scan
 Use the demo version to test on smaller directories first:
 ```bash
-./file-counter-demo ~/Documents
+./fs ~/Downloads
 ```
 
 ### Slow Performance
@@ -125,17 +129,26 @@ The application is designed to use minimal memory, but scanning very large direc
 ## Project Structure
 
 ```
-fsscan/
-├── main.go              # Main application (full system scan)
-├── scanner.go           # Core scanning logic
-├── scanner_test.go      # Unit tests
-├── cmd/
-│   └── demo/
-│       └── main.go      # Demo application
-├── build.sh             # Build script
-├── Makefile             # Build automation
-├── test_build.go        # Build verification
-└── README.md            # Documentation
+.
+├── build.sh
+├── flake.lock
+├── flake.nix
+├── fs
+├── go.mod
+├── install.sh
+├── main.go
+├── Makefile
+├── pkg
+│   └── scanner
+│       ├── analyzer
+│       │   └── analyzer.go
+│       ├── scanner.go
+│       └── types
+│           └── types.go
+├── README.md
+└── USAGE.md
+
+5 directories, 13 files
 ```
 
 ## Technical Details
@@ -148,15 +161,15 @@ fsscan/
 
 ## Contributing
 
-Feel free to submit issues or pull requests to improve the application.
+Feel free to submit issues or pull requests to improve the application, not sure what you could possibly wanna do to this, but yea 😭
 
 ## License
 
-This project is open source. Use it freely for personal or commercial purposes.
+This project is licensed under the Do What The Fuck You Want To Public License (WTFPL), yea, that means you can do whatever you want with it, I genuinely don't care 😭✌️
 
 ## Warning
 
-This application scans the ENTIRE file system starting from root (`/`). On systems with large amounts of data, this can:
+If you run this on a root directory, it will scan the entire file system starting from root `/`. On systems with large amounts of data, this can:
 - Take several hours to complete
 - Generate significant disk I/O
 - Require substantial system permissions
