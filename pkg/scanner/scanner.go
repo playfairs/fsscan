@@ -71,7 +71,13 @@ func (s *Scanner) Start(rootPath string) *types.ScanResult {
 	wg.Wait()
 	s.progressTicker.Stop()
 
-	return s.analyzer.GetResults()
+	result := s.analyzer.GetResults()
+
+	if result.TotalErrors == 0 {
+		result.TotalErrors = atomic.LoadInt64(&s.errorCount)
+	}
+
+	return result
 }
 func (s *Scanner) Stop() {
 	s.cancel()
