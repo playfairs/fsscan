@@ -46,38 +46,38 @@ Root privileges provide access to all system files and directories that would ot
 ## Output Example
 
 ```
-Scanning directory: /Users/playfairs/.nix
+Scanning current directory: .
+Scanned Files: 5694 | Dirs: 1476 | Errors: 0 | Skipped: 0 | Size: 197.6 GB | Time: 0s
+                    FILE SYSTEM SCAN RESULTStilities/locales/hi-IN.po
 
-                    FILE SYSTEM SCAN RESULTS
-
-SCANNED PATH         /Users/playfairs/.nix
-TOTAL FILES          104 files
-TOTAL DIRECTORIES    25 directories
-TOTAL SIZE           14.9 MB
-SCAN DURATION        4ms
-AVERAGE FILE SIZE    146.9 KB
-PROCESSING SPEED     23192.28
+SCANNED PATH         .
+TOTAL FILES          6121 files
+TOTAL DIRECTORIES    1552 directories
+TOTAL SIZE           197.6 GB
+SCAN DURATION        336ms
+AVERAGE FILE SIZE    33.1 MB
+PROCESSING SPEED     18200.75
 ERRORS               0 errors
 
-LARGEST FILE         /Users/playfairs/.nix/wallpapers/feild.jpg (4.1 MB)
-SMALLEST FILE        /Users/playfairs/.nix/modules/home/analygits/.gitignore (7 B)
-OLDEST FILE          /Users/playfairs/.nix/.gitattributes (2025-11-04 15:20:05)
-NEWEST FILE          /Users/playfairs/.nix/modules/home/shells/default.nix (2025-11-15 14:33:47)
+LARGEST FILE         C Family/C++/ByteBuilder/tests/test5.txt (100.0 GB)
+SMALLEST FILE        Python/lazypip/src/lazypip.egg-info/dependency_links.txt (1 B)
+OLDEST FILE          Visual Studio/fucky wucky/.gitignore (2024-08-07 12:47:29)
+NEWEST FILE          Go/File Counter/README.md (2025-11-15 15:10:03)
 
 #    EXTENSION      CATEGORY  COUNT   TOTAL SIZE 
 ---- -------------- --------- ------- -----------
-1    .nix           Nix       64      96.2 KB    
-3    .png           Image     7       6.4 MB     
-4    .jpg           Image     7       8.3 MB     
-5    .lock          Lockfile  5       84.7 KB    
+1    .py            Code      2616    24.1 MB    
+3    .po            Other     303     6.6 MB     
+4    .json          Data      254     343.1 MB   
+5    .xml           Data      211     1.4 MB     
 
-#    DIRECTORY                                    FILES   DIRS    TOTAL SIZE 
----- -------------------------------------------- ------- ------- -----------
-1    /Users/playfairs/.nix/wallpapers             8       1       8.6 MB     
-2    /Users/playfairs/.nix/.res                   5       1       6.0 MB     
-3    /Users/playfairs/.nix/modules/home/fastfetch 2       1       128.0 KB   
-4    /Users/playfairs/.nix                        9       1       48.0 KB    
-5    /Users/playfairs/.nix/modules/home           20      1       22.6 KB    
+#    DIRECTORY                                           FILES   DIRS    TOTAL SIZE 
+---- --------------------------------------------------- ------- ------- -----------
+1    C Family/C++/ByteBuilder/tests                      11      1       196.9 GB   
+2    Python/Importify/Spotify Extended Streaming History 28      1       314.8 MB   
+3    dpy/bleed/lavalink                                  2       1       68.1 MB    
+4    playfairs.cc/Github Pages/UwU/assets                29      1       44.5 MB    
+5    equalizerAPO-ARM-64/Setup/lib64                     12      1       29.9 MB     
 ```
 
 ## Understanding the Output
