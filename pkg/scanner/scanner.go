@@ -6,10 +6,15 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"file-counter/pkg/scanner/analyzer"
+	"file-counter/pkg/scanner/types"
 )
+
 type Scanner struct {
 	fileCount      int64
 	dirCount       int64
@@ -24,6 +29,7 @@ type Scanner struct {
 	mu             sync.Mutex
 	lastError      string
 	currentPath    string
+	analyzer       *analyzer.StatisticsCollector
 }
 type ScanResult struct {
 	TotalFiles     int64
@@ -34,6 +40,7 @@ type ScanResult struct {
 	Duration       time.Duration
 	FilesPerSecond float64
 }
+
 func NewScanner() *Scanner {
 	ctx, cancel := context.WithCancel(context.Background())
 
@@ -43,13 +50,10 @@ func NewScanner() *Scanner {
 		cancel:         cancel,
 		workerCount:    runtime.GOMAXPROCS(0) * 2,
 		progressTicker: time.NewTicker(50 * time.Millisecond),
+		analyzer:       analyzer.NewStatisticsCollector(),
 	}
 }
-func (s *Scanner) Start(rootPath string) *ScanResult {
-	fmt.Printf("Starting file system scan from: %s\n", rootPath)
-	fmt.Printf("Using %d worker goroutines\n", s.workerCount)
-	fmt.Println("Press Ctrl+C to stop at any time")
-
+func (s *Scanner) Start(rootPath string) *types.ScanResult {
 	go s.displayProgress()
 
 	pathChan := make(chan string, 1000)
@@ -66,18 +70,8 @@ func (s *Scanner) Start(rootPath string) *ScanResult {
 
 	wg.Wait()
 	s.progressTicker.Stop()
-	duration := time.Since(s.startTime)
-	filesPerSecond := float64(atomic.LoadInt64(&s.fileCount)) / duration.Seconds()
 
-	return &ScanResult{
-		TotalFiles:     atomic.LoadInt64(&s.fileCount),
-		TotalDirs:      atomic.LoadInt64(&s.dirCount),
-		TotalErrors:    atomic.LoadInt64(&s.errorCount),
-		TotalSkipped:   atomic.LoadInt64(&s.skippedCount),
-		TotalBytes:     atomic.LoadInt64(&s.bytesScanned),
-		Duration:       duration,
-		FilesPerSecond: filesPerSecond,
-	}
+	return s.analyzer.GetResults()
 }
 func (s *Scanner) Stop() {
 	s.cancel()
@@ -111,6 +105,17 @@ func (s *Scanner) walkDirectory(root string, pathChan chan<- string) {
 			return nil
 		}
 
+		if info.IsDir() {
+			dirName := filepath.Base(path)
+			switch dirName {
+			case ".git", "node_modules", ".npm", "venv", ".venv", "env", ".env",
+				"target", "build", "dist", ".next", ".nuxt", "coverage", ".coverage",
+				".vscode", ".idea", "__pycache__", ".pytest_cache", "site-packages",
+				"vendor", ".vendor", "cache", ".cache":
+				return filepath.SkipDir
+			}
+		}
+
 		s.setCurrentPath(path)
 
 		select {
@@ -126,8 +131,30 @@ func (s *Scanner) ProcessPath(path string) {
 	info, err := os.Lstat(path)
 	if err != nil {
 		atomic.AddInt64(&s.errorCount, 1)
+		s.analyzer.IncrementError()
 		s.setLastError(fmt.Sprintf("Error getting info for %s: %v", path, err))
 		return
+	}
+
+	ext := ""
+	if !info.IsDir() {
+		if idx := strings.LastIndex(info.Name(), "."); idx > 0 {
+			ext = strings.ToLower(info.Name()[idx:])
+		}
+	}
+
+	fileInfo := types.FileInfo{
+		Path:      path,
+		Size:      info.Size(),
+		ModTime:   info.ModTime(),
+		IsDir:     info.IsDir(),
+		Extension: ext,
+	}
+
+	if info.IsDir() {
+		s.analyzer.AnalyzeDirectory(path, fileInfo)
+	} else {
+		s.analyzer.AnalyzeFile(path, fileInfo)
 	}
 
 	if info.IsDir() {
