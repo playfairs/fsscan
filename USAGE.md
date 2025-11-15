@@ -1,36 +1,36 @@
 # Quick Start Guide
 
-This guide will help you get the File Counter up and running quickly.
+This guide will help you get the fsscan up and running quickly.
 
 ## Quick Build & Run
 
 ### 1. Build Both Applications
 ```bash
-cd "File Counter"
+cd "fsscan"
 go run test_build.go
 
-go build -o file-counter .
-go build -o file-counter-demo ./cmd/demo
+go build -o fs .
+go build -o fs-demo ./cmd/demo
 ```
 
 ### 2. Test with Demo First
 ```bash
-./file-counter-demo
-./file-counter-demo ~/Documents
-./file-counter-demo /usr/local
+./fs-demo
+./fs-demo ~/Documents
+./fs-demo /usr/local
 ```
 
 ### 3. Run Full System Scan
 ```bash
-./file-counter
-sudo ./file-counter
+./fs
+sudo ./fs
 ```
 
 ## What You'll See
 
 ### Demo Output
 ```
-=== File Counter Demo ===
+=== fsscan Demo ===
 Scanning directory: /Users/username/Documents
 This is a demo version for testing purposes
 
@@ -51,7 +51,7 @@ Files per Second: 12,860.00
 
 ### Full System Scan Output
 ```
-=== File Counter - Advanced File System Scanner ===
+=== fsscan - Advanced File System Scanner ===
 Scanning entire file system from root /
 
 Starting file system scan from: /
@@ -120,25 +120,26 @@ go run test_build.go
 
 1. **First Time Setup**:
    ```bash
-   cd "File Counter"
+   cd "fsscan"
    go run test_build.go
    ```
 
 2. **Test on Small Directory**:
    ```bash
-   ./file-counter-demo ~/Desktop
+   ./fs-demo ~/Desktop
    ```
 
 3. **Full System Scan**:
    ```bash
-   sudo ./file-counter
+   ./fs
+   sudo ./fs
    ```
 
 4. **Stop Anytime**: Press `Ctrl+C` to stop gracefully
 
 ## Project Structure
 ```
-File Counter/
+fsscan/
 ├── main.go                  # Main application (scans from /)
 ├── pkg/scanner/
 │   ├── scanner.go          # Core scanning logic

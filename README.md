@@ -1,4 +1,4 @@
-# File Counter - Advanced File System Scanner
+# fsscan - Advanced File System Scanner
 
 A high-performance Go application that scans the entire file system starting from the root directory `/` and counts all files while displaying real-time progress.
 
@@ -22,26 +22,26 @@ A high-performance Go application that scans the entire file system starting fro
 1. Clone or download this project
 2. Navigate to the project directory:
    ```bash
-   cd "File Counter"
+   cd "fsscan"
    ```
 3. Build the applications:
    ```bash
-   go build -o file-counter .
-   go build -o file-counter-demo ./cmd/demo
+   go build -o fs .
+   go build -o fs-demo ./cmd/demo
    ```
 
 ## Usage
 
 ### Full System Scan
 ```bash
-./file-counter              # Basic scan
-sudo ./file-counter         # With root privileges (recommended)
+./fs              # Basic scan
+sudo ./fs         # With root privileges (recommended)
 ```
 
 ### Demo Version (for testing)
 ```bash
-./file-counter-demo                    # Scan current directory
-./file-counter-demo /path/to/scan     # Scan specific directory
+./fs-demo                    # Scan current directory
+./fs-demo /path/to/scan     # Scan specific directory
 ```
 
 Root privileges provide access to all system files and directories that would otherwise be restricted.
@@ -49,7 +49,7 @@ Root privileges provide access to all system files and directories that would ot
 ## Output Example
 
 ```
-=== File Counter - Advanced File System Scanner ===
+=== fsscan - Advanced File System Scanner ===
 Scanning entire file system from root /
 Note: This may take a very long time and require elevated permissions
 Use 'sudo' for full system access if needed
@@ -125,7 +125,7 @@ The application is designed to use minimal memory, but scanning very large direc
 ## Project Structure
 
 ```
-File Counter/
+fsscan/
 ├── main.go              # Main application (full system scan)
 ├── scanner.go           # Core scanning logic
 ├── scanner_test.go      # Unit tests
@@ -161,4 +161,4 @@ This application scans the ENTIRE file system starting from root (`/`). On syste
 - Generate significant disk I/O
 - Require substantial system permissions
 
-Always ensure you have adequate time and system resources before starting a full system scan.# file-counter
+Always ensure you have adequate time and system resources before starting a full system scan.
