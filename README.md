@@ -53,36 +53,37 @@ Running the command with path "." will scan the current directory and its subdir
 
 ```
 Scanning directory: /
-Scanned Files: 4954314 | Dirs: 1200023 | Errors: 927 | Skipped: 378 | Size: 1.4 TB | Time: 2m55s
-
+Scanned Files: 4990439 | Dirs: 1217291 | Errors: 822 | Skipped: 382 | Size: 1.4 TB | Time: 2m54s
+                    FILE SYSTEM SCAN RESULTS/Rankin_Inletmps-RASP_V-u__m-6.3.txtert.crtes
+Last Error: Error accessing /private/var/protected/trustd/private: open /private/var/prot...
 SCANNED PATH         /
-TOTAL FILES          4954314 files
-TOTAL DIRECTORIES    1200023 directories
+TOTAL FILES          4992461 files
+TOTAL DIRECTORIES    1217342 directories
 TOTAL SIZE           1.4 TB
-SCAN DURATION        2m55.785s
-AVERAGE FILE SIZE    302.0 KB
-PROCESSING SPEED     28183.99
-ERRORS               927 errors
+SCAN DURATION        2m54.293s
+AVERAGE FILE SIZE    300.4 KB
+PROCESSING SPEED     28644.10
+ERRORS               822 errors
 
 LARGEST FILE         /System/Volumes/Data/Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests/test5.txt (100.0 GB)
 SMALLEST FILE        /Applications/Apple Configurator.app/Contents/Frameworks/ConfigurationProfile.framework/Versions/Current (1 B)
 OLDEST FILE          /nix/store/17pkbrabxby9g5ngxz485gb9xkgzzz2l-lowdown-2.0.2-lib/lib/liblowdown.2.dylib (1969-12-31 18:00:00)
 NEWEST FILE          /Applications/Lunar Client.app/Contents/CodeResources (2025-11-15 17:28:38)
 
-#    EXTENSION      CATEGORY  COUNT   TOTAL SIZE
----- -------------- --------- ------- -----------
-2    .nix           Nix       789345  2.0 GB
-3    .strings       Other     218172  1.1 GB
-4    .png           Image     176407  8.6 GB
-5    .bin           Other     148723  2.7 GB
+#    EXTENSION      CATEGORY   COUNT   TOTAL SIZE
+---- -------------- ---------- ------- -----------
+2    .nix           Nix        789343  2.0 GB
+3    .strings       Other      218654  1.1 GB
+4    .png           Image      177199  8.7 GB
+5    .bin           Executable 148723  2.7 GB
 
 #    DIRECTORY                                                    FILES   DIRS    TOTAL SIZE
 ---- ------------------------------------------------------------ ------- ------- -----------
-1    /Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB
-2    ...lumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB
-3    .../Data/Volumes/Femboy >_</Media/anime/action/bleach/Bleach 367     1       81.5 GB
-4    /Volumes/Femboy >_</Media/anime/action/bleach/Bleach         367     1       81.5 GB
-5    /System/Volumes/Data/Volumes/Femboy >_</Media/OBS Recordings 341     1       44.4 GB    
+1    ...lumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB
+2    /Volumes/Femboy >_</Developer/C Family/C++/ByteBuilder/tests 11      1       196.9 GB
+3    /Volumes/Femboy >_</Media/anime/action/bleach/Bleach         367     1       81.5 GB
+4    .../Data/Volumes/Femboy >_</Media/anime/action/bleach/Bleach 367     1       81.5 GB
+5    /System/Volumes/Data/Volumes/Femboy >_</Media/OBS Recordings 341     1       44.4 GB  
 ```
 
 ## Understanding the Output
