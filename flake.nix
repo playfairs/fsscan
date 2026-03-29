@@ -1,5 +1,5 @@
 {
-  description = "File System Scan - CLI Tool written in GOLANG";
+  description = "fsscan: minimal dev shell + runnable CLI app";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
@@ -10,8 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-      in
-      {
+      in {
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.go
@@ -19,13 +18,14 @@
           ];
 
           shellHook = ''
-            go version | cut -d' ' -f3
-            ${pkgs.gcc}/bin/g++ --version | head -n1
+            echo "Go version: $(go version | cut -d' ' -f3)"
+            echo "G++ version: $(${pkgs.gcc}/bin/g++ --version | head -n1)"
           '';
         };
 
         packages.default = pkgs.stdenv.mkDerivation {
-          name = "fsscan";
+          pname = "fsscan";
+          version = "1.0.0";
           src = ./.;
 
           buildInputs = [ pkgs.bash ];
