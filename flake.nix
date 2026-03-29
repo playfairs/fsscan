@@ -1,8 +1,10 @@
 {
-  description = "Minimal dev shell with Go and g++";
+  description = "File System Scan - CLI Tool written in GOLANG";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
 
   outputs = { self, nixpkgs, flake-utils }: 
     flake-utils.lib.eachDefaultSystem (system:
@@ -21,7 +23,24 @@
             ${pkgs.gcc}/bin/g++ --version | head -n1
           '';
         };
+
+        packages.default = pkgs.stdenv.mkDerivation {
+          name = "fsscan";
+          src = ./.;
+
+          buildInputs = [ pkgs.bash ];
+
+          installPhase = ''
+            mkdir -p $out/bin
+            cp fsscan.sh $out/bin/fsscan
+            chmod +x $out/bin/fsscan
+          '';
+        };
+
+        apps.default = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/fsscan";
+        };
       }
     );
 }
-
