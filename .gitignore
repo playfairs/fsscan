@@ -2,5 +2,4 @@
 /.DS_Store
 file-counter
 test_build.go
-flake.lock
 fs
