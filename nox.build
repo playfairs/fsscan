@@ -1,0 +1,11 @@
+project "fsscan" {
+    description = "Minimal file system scanner CLI"
+    license = "WTFPL"
+    version = file("./VERSION")
+    edition = "1"
+
+    executable "fs" {
+        sources = ["main.go"]
+        install = true
+    }
+}
